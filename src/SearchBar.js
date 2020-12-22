@@ -1,14 +1,11 @@
 import React from 'react'
 
-export default class SearchBar extends React.Component{
-
-  render(){
-    return(
-      <div>
-
-      </div>
-    )
-    
-  }
+const SearchBar = ({onChange}) => {
+  return (
+    <div className="ui search">
+        <input className="prompt" type='text' placeholder='Search...' onChange={onChange} />
+    </div>
+  )
 }
 
+export default SearchBar
