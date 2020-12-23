@@ -42,6 +42,12 @@ addToNomination= (movie) =>{
   }
 }
 
+removeFromNomination = (movie) =>{
+  this.setState((prevState) =>({
+    nominations: prevState.nominations.filter(nominatedMovie =>nominatedMovie !== movie )
+  }))
+}
+
 // handleSubmit = (e) => {
 //   e.preventDefault()
 //   if(!this.state.searchWord){
@@ -60,7 +66,7 @@ const {movies, nominations} = this.state
     <div className="App">
       <SearchBar onChange={this.handleSearch} onSubmit={this.handleSubmit} findMovies={this.findMovies} />
       <ResultsContainer  movies={movies}  addToNomination={this.addToNomination} />
-      <NominationsContainer nominations={nominations}/>
+      <NominationsContainer nominations={nominations} removeFromNomination={this.removeFromNomination}/>
     </div>
   )
  }
