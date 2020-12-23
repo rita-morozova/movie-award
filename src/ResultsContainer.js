@@ -1,14 +1,14 @@
 import React from 'react'
+import MovieCard from './MovieCard'
 
-export default class ResultsContainer extends React.Component{
+const ResultsContainer = ({movies}) =>{
 
-  render(){
+  console.log(movies)
     return(
       <div>
-
+        {movies.map (movie => <MovieCard key={movie.id} movie={movie} />)}
       </div>
     )
-    
-  }
 }
 
+export default ResultsContainer
