@@ -5,7 +5,7 @@ const SearchBar = ({onChange, onSubmit}) => {
     <div className="ui search">
       <form onSubmit={onSubmit}>
         <input className="prompt" type='text' placeholder='Search...' onChange={onChange} />
-        <button>Find Movies</button>
+        {/* <button>Find Movies</button> */}
       </form>
     </div>
   )

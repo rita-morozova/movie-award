@@ -1,14 +1,14 @@
 import React from 'react'
+import NominatedMovie from './NominatedMovie'
 
-export default class NominationsContainer extends React.Component{
+const  NominationsContainer = ({nominations}) =>{
 
-  render(){
     return(
       <div>
-
+        <h2>Nominations</h2>
+        {nominations.map (movie => <NominatedMovie key={movie.id} movie={movie} />)}
       </div>
     )
-    
-  }
 }
 
+export default NominationsContainer

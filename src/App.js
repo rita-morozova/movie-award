@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import './App.css'
 import SearchBar from './SearchBar'
 import ResultsContainer from './ResultsContainer'
+import NominationsContainer from './NominationsContainer'
 import axios from 'axios'
 
 class App extends React.Component {
@@ -9,7 +10,8 @@ class App extends React.Component {
 state = {
   movies: [],
   searchWord: '',
-  error: null
+  error: null,
+  nominations: []
 }
 
 findMovies = async(word) => {
@@ -29,27 +31,36 @@ findMovies = async(word) => {
 
 handleSearch = (e) =>{
   this.setState({searchWord: e.target.value})
-  this.findMovies()
+  this.findMovies(this.state.searchWord)
 }
 
-handleSubmit = (e) => {
-  e.preventDefault()
-  if(!this.state.searchWord){
-    this.setState({error: 'Field can not be left blank'})
-  }else{
-    this.findMovies(this.state.searchWord)
-    this.setState({searchWord: ''})
+addToNomination= (movie) =>{
+  if(!this.state.nominations.includes(movie)){
+    this.setState((prevState) => ({
+      nominations: [...prevState.nominations, movie]
+    }))
   }
 }
 
+// handleSubmit = (e) => {
+//   e.preventDefault()
+//   if(!this.state.searchWord){
+//     this.setState({error: 'Field can not be left blank'})
+//   }else{
+//     this.findMovies(this.state.searchWord)
+//     this.setState({searchWord: ''})
+//   }
+// }
+
  
 render(){
-  // const searchMovies =  this.state.movies.filter(movie => movie.title.includes(this.state.searchWord)) 
-  console.log(this.state.movies)
+const {movies, nominations} = this.state
+  console.log(this.state.nominations)
   return (
     <div className="App">
       <SearchBar onChange={this.handleSearch} onSubmit={this.handleSubmit} findMovies={this.findMovies} />
-      <ResultsContainer  movies={this.state.movies} />
+      <ResultsContainer  movies={movies}  addToNomination={this.addToNomination} />
+      <NominationsContainer nominations={nominations}/>
     </div>
   )
  }

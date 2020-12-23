@@ -1,12 +1,12 @@
 import React from 'react'
 
-const MovieCard = ({movie}) =>{
+const MovieCard = ({movie, addToNomination}) =>{
 
     return(
       <div>
         <h2>{movie.Title}</h2>
         <h3>{movie.Year}</h3>
-        <button>Nominate</button>
+        <button onClick={() => addToNomination(movie)}>Nominate</button>
       </div>
     )
 }
