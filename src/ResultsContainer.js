@@ -1,12 +1,12 @@
 import React from 'react'
 import MovieCard from './MovieCard'
 
-const ResultsContainer = ({movies, addToNomination}) =>{
+const ResultsContainer = ({movies, addToNomination,  disabledButtons}) =>{
 
 
     return(
       <div>
-        {movies.map (movie => <MovieCard key={movie.id} movie={movie} addToNomination={addToNomination}/>)}
+        {movies.map ((movie, index) =>  <MovieCard key={movie.imdbID} index={index} movie={movie} addToNomination={addToNomination}  disabledButtons={disabledButtons} />)}
       </div>
     )
 }

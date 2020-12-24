@@ -11,7 +11,8 @@ state = {
   movies: [],
   searchWord: '',
   error: null,
-  nominations: []
+  nominations: [],
+  disabledButtons: []
 }
 
 findMovies = async(word) => {
@@ -21,7 +22,10 @@ findMovies = async(word) => {
   const {Search} = data
   
   if (data.Response === 'True'){
-    this.setState({movies: Search})
+    this.setState({
+      movies: Search,
+      disabledButtons: new Array(Search.length).fill(false)
+    })
   }else if(data.Error === 'Movie Not Found'){
     this.setState({error: 'Your search did not return any matches. Please try again'})
   }else if (data.Error === 'Too many results'){
@@ -34,11 +38,16 @@ handleSearch = (e) =>{
   this.findMovies(this.state.searchWord)
 }
 
-addToNomination= (movie) =>{
+addToNomination= (index, movie) =>{
   if(!this.state.nominations.includes(movie)){
-    this.setState((prevState) => ({
-      nominations: [...prevState.nominations, movie]
-    }))
+    this.setState((prevState) => {
+      const newDisabledButtons = [...prevState.disabledButtons];
+      newDisabledButtons[index] = true;
+      return {
+      nominations: [...prevState.nominations, movie],
+      disabledButtons: newDisabledButtons
+      }
+    })
   }
 }
 
@@ -47,25 +56,14 @@ removeFromNomination = (movie) =>{
     nominations: prevState.nominations.filter(nominatedMovie =>nominatedMovie !== movie )
   }))
 }
-
-// handleSubmit = (e) => {
-//   e.preventDefault()
-//   if(!this.state.searchWord){
-//     this.setState({error: 'Field can not be left blank'})
-//   }else{
-//     this.findMovies(this.state.searchWord)
-//     this.setState({searchWord: ''})
-//   }
-// }
-
  
 render(){
-const {movies, nominations} = this.state
+const {movies, nominations,  disabledButtons} = this.state
   console.log(this.state.nominations)
   return (
     <div className="App">
       <SearchBar onChange={this.handleSearch} onSubmit={this.handleSubmit} findMovies={this.findMovies} />
-      <ResultsContainer  movies={movies}  addToNomination={this.addToNomination} />
+      <ResultsContainer  movies={movies}  addToNomination={this.addToNomination}  disabledButtons={disabledButtons} />
       <NominationsContainer nominations={nominations} removeFromNomination={this.removeFromNomination}/>
     </div>
   )

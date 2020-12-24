@@ -6,7 +6,7 @@ const  NominatedMovie = ({movie, removeFromNomination}) =>{
       <div>
         <h2>{movie.Title}</h2>
         <h2>{movie.Year}</h2>
-        <button onClick={() => removeFromNomination(movie)}>Remove</button>
+        <button  key={movie.imdbID} onClick={() => removeFromNomination(movie)}>Remove</button>
       </div>
     )
 }

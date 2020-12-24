@@ -1,13 +1,14 @@
 import React from 'react'
 
-const MovieCard = ({movie, addToNomination}) =>{
+const MovieCard = ({movie, addToNomination,  index, disabledButtons}) =>{
+
 
     return(
-      <div>
+      <div >
         <h2>{movie.Title}</h2>
         <h3>{movie.Year}</h3>
-        <button onClick={() => addToNomination(movie)}>Nominate</button>
-      </div>
+        <button onClick={() => addToNomination(index, movie)} disabled={disabledButtons[index]}>Nominate</button>
+      </div> 
     )
 }
 
