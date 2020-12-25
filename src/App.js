@@ -6,6 +6,8 @@ import NominationsContainer from './NominationsContainer'
 import Banner from './Banner'
 import axios from 'axios'
 
+
+
 class App extends React.Component {
 
 state = {
@@ -13,27 +15,33 @@ state = {
   searchWord: '',
   error: null,
   nominations: [],
-  disabledButtons: []
+  disabledButtons: [],
+  
 }
 
 componentDidMount = () => {
-  this.hydrateStateWithLocalStorage()
-  //added even listener to save state to local storage when user leaves or refreshes the page
-  window.addEventListener(
-    'beforeunload',
-    this.saveStateToLocalStorage.bind(this)
-  )
+  const nominations = localStorage.getItem('nominations')
+  if(nominations !== null){
+    this.setState({nominations: JSON.parse(nominations)})
+  }
+  // const nominations = JSON.parse(localStorage.getItem('nominations'))
+  // this.hydrateStateWithLocalStorage()
+  // //added even listener to save state to local storage when user leaves or refreshes the page
+  // window.addEventListener(
+  //   'beforeunload',
+  //   this.saveStateToLocalStorage.bind(this)
+  // )
 }
 
 //saving state when the user leaves the app
-componentWillUnmount = () => {
-  window.removeEventListener(
-    'beforeunload',
-    this.saveStateToLocalStorage.bind(this)
-  )
-  //saves if component has a chance to unmount
-  this.saveStateToLocalStorage()
-}
+// componentWillUnmount = () => {
+//   window.removeEventListener(
+//     'beforeunload',
+//     this.saveStateToLocalStorage.bind(this)
+//   )
+//   //saves if component has a chance to unmount
+//   this.saveStateToLocalStorage()
+// }
 
 findMovies = async(word) => {
   const key = process.env.REACT_APP_OMDB_API_KEY
@@ -65,6 +73,7 @@ addToNomination= (index, movie) =>{
     this.setState((prevState) => {
       const newDisabledButtons = [...prevState.disabledButtons];
       newDisabledButtons[index] = true;
+      localStorage.setItem('nominations', JSON.stringify([...prevState.nominations, movie]))
       return {
       nominations: [...prevState.nominations, movie],
       disabledButtons: newDisabledButtons
@@ -72,14 +81,14 @@ addToNomination= (index, movie) =>{
     })
   }
   //Update Local Storage after adding a new movie
-  localStorage.setItem('nominations', JSON.stringify(nominations))
-  localStorage.setItem('movie', '')
+  // localStorage.setItem('nominations', JSON.stringify(nominations))
+  // localStorage.setItem('movie', '')
  }
 }
 
 removeFromNomination = (movie) =>{
   this.setState((prevState) =>({
-    nominations: prevState.nominations.filter(nominatedMovie =>nominatedMovie !== movie )
+    nominations: prevState.nominations.filter(nominatedMovie =>nominatedMovie !== movie ) 
   }))
   //Update Local Storage after removing a movie from nominations
   localStorage.setItem('nominations', JSON.stringify(this.state.nominations))

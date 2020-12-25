@@ -4,7 +4,6 @@ import NominatedMovie from './NominatedMovie'
 
 const  NominationsContainer = ({nominations, removeFromNomination}) =>{
 
-
     return(
       <div>
         <h2>Nominations</h2>
