@@ -3,6 +3,7 @@ import './App.css'
 import SearchBar from './SearchBar'
 import ResultsContainer from './ResultsContainer'
 import NominationsContainer from './NominationsContainer'
+import Banner from './Banner'
 import axios from 'axios'
 
 class App extends React.Component {
@@ -39,7 +40,8 @@ handleSearch = (e) =>{
 }
 
 addToNomination= (index, movie) =>{
-  if(!this.state.nominations.includes(movie)){
+  if(this.state.nominations.length < 5){
+    if(!this.state.nominations.includes(movie)){
     this.setState((prevState) => {
       const newDisabledButtons = [...prevState.disabledButtons];
       newDisabledButtons[index] = true;
@@ -49,12 +51,21 @@ addToNomination= (index, movie) =>{
       }
     })
   }
+ }
 }
 
 removeFromNomination = (movie) =>{
   this.setState((prevState) =>({
     nominations: prevState.nominations.filter(nominatedMovie =>nominatedMovie !== movie )
   }))
+}
+
+displayBanner = () => {
+  if(this.state.nominations.length === 5){
+    return(
+       <Banner />
+    )
+  }
 }
  
 render(){
@@ -65,6 +76,7 @@ const {movies, nominations,  disabledButtons} = this.state
       <SearchBar onChange={this.handleSearch} onSubmit={this.handleSubmit} findMovies={this.findMovies} />
       <ResultsContainer  movies={movies}  addToNomination={this.addToNomination}  disabledButtons={disabledButtons} />
       <NominationsContainer nominations={nominations} removeFromNomination={this.removeFromNomination}/>
+      {this.displayBanner()}
     </div>
   )
  }

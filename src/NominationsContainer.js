@@ -1,5 +1,6 @@
 import React from 'react'
 import NominatedMovie from './NominatedMovie'
+import Banner from './Banner'
 
 const  NominationsContainer = ({nominations, removeFromNomination}) =>{
 
