@@ -51,6 +51,12 @@ handleSearch = (e) =>{
   this.findMovies(this.state.searchWord)
 }
 
+handleError = () => {
+  if(this.state.error){
+    alert(this.state.error)
+  }
+}
+
 addToNomination= (index, movie) =>{
   const {nominations} = this.state
   if(nominations.length < 5){
@@ -85,10 +91,10 @@ displayBanner = () => {
 }
  
 render(){
-const {movies, nominations,  disabledButtons, error, searchWord} = this.state
+const {movies, nominations,  disabledButtons, searchWord} = this.state
   return (
     <div className="App">
-      {error ? <h2>error</h2> : null}
+      {this.handleError()}
       <SearchBar onChange={this.handleSearch} onSubmit={this.handleSubmit} findMovies={this.findMovies} />
       <ResultsContainer  movies={movies}  addToNomination={this.addToNomination}  disabledButtons={disabledButtons} searchWord={searchWord} />
       <NominationsContainer nominations={nominations} removeFromNomination={this.removeFromNomination}/>

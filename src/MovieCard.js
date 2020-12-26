@@ -2,8 +2,8 @@ import React from 'react'
 
 const MovieCard = ({movie, addToNomination,  index, disabledButtons}) =>{
 
-  const addDefaultSrc = (ev) =>{
-    ev.target.src ='/poster.jpg'
+  const addDefaultSrc = (e) =>{
+    e.target.src ='/poster.jpg'
   }
 
     return(
