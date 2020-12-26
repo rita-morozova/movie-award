@@ -5,6 +5,7 @@ import ResultsContainer from './ResultsContainer'
 import NominationsContainer from './NominationsContainer'
 import Banner from './Banner'
 import axios from 'axios'
+import {EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton, TwitterIcon, TwitterShareButton} from 'react-share'
 
 
 
@@ -92,6 +93,9 @@ displayBanner = () => {
  
 render(){
 const {movies, nominations,  disabledButtons, searchWord} = this.state
+const url = 'http://localhost:3000/'
+const subject = 'The Shoppies: Movie awards for entrepreneurs'
+const body = 'Check out The Shoppies Awards and vote now for your top-five movies of 2020!'
   return (
     <div className="App">
       {this.handleError()}
@@ -99,6 +103,18 @@ const {movies, nominations,  disabledButtons, searchWord} = this.state
       <ResultsContainer  movies={movies}  addToNomination={this.addToNomination}  disabledButtons={disabledButtons} searchWord={searchWord} />
       <NominationsContainer nominations={nominations} removeFromNomination={this.removeFromNomination}/>
       {this.displayBanner()}
+      <EmailShareButton  url ={url} subject={subject} body={body}>
+        <EmailIcon size={32} round={true} />
+      </EmailShareButton>
+      <FacebookShareButton url={url} quote={body}>
+        <FacebookIcon size={32} round={true} />
+      </FacebookShareButton>
+      <LinkedinShareButton url={url} title={subject} summary={body}>
+        <LinkedinIcon size={32} round={true} />
+      </LinkedinShareButton>
+      <TwitterShareButton url={url} title={body} hashtags={['movieaward', 'shopify']}>
+        <TwitterIcon size={32} round={true}/>
+      </TwitterShareButton>
     </div>
   )
  }
