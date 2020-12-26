@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './App.css'
 import SearchBar from './SearchBar'
 import ResultsContainer from './ResultsContainer'
@@ -20,28 +20,13 @@ state = {
 }
 
 componentDidMount = () => {
-  const nominations = localStorage.getItem('nominations')
-  if(nominations !== null){
+  let nominations = localStorage.getItem('nominations')
+  if(nominations.length !== 0){
     this.setState({nominations: JSON.parse(nominations)})
   }
-  // const nominations = JSON.parse(localStorage.getItem('nominations'))
-  // this.hydrateStateWithLocalStorage()
-  // //added even listener to save state to local storage when user leaves or refreshes the page
-  // window.addEventListener(
-  //   'beforeunload',
-  //   this.saveStateToLocalStorage.bind(this)
-  // )
 }
 
-//saving state when the user leaves the app
-// componentWillUnmount = () => {
-//   window.removeEventListener(
-//     'beforeunload',
-//     this.saveStateToLocalStorage.bind(this)
-//   )
-//   //saves if component has a chance to unmount
-//   this.saveStateToLocalStorage()
-// }
+
 
 findMovies = async(word) => {
   const key = process.env.REACT_APP_OMDB_API_KEY
@@ -73,6 +58,7 @@ addToNomination= (index, movie) =>{
     this.setState((prevState) => {
       const newDisabledButtons = [...prevState.disabledButtons];
       newDisabledButtons[index] = true;
+      //Update Local Storage after adding a new movie
       localStorage.setItem('nominations', JSON.stringify([...prevState.nominations, movie]))
       return {
       nominations: [...prevState.nominations, movie],
@@ -80,18 +66,14 @@ addToNomination= (index, movie) =>{
       }
     })
   }
-  //Update Local Storage after adding a new movie
-  // localStorage.setItem('nominations', JSON.stringify(nominations))
-  // localStorage.setItem('movie', '')
  }
 }
 
 removeFromNomination = (movie) =>{
-  this.setState((prevState) =>({
-    nominations: prevState.nominations.filter(nominatedMovie =>nominatedMovie !== movie ) 
-  }))
+  const updatedList = this.state.nominations.filter(nominatedMovie =>nominatedMovie !== movie ) 
+  this.setState({nominations: updatedList})
   //Update Local Storage after removing a movie from nominations
-  localStorage.setItem('nominations', JSON.stringify(this.state.nominations))
+  localStorage.setItem('nominations', JSON.stringify(updatedList))
 }
 
 displayBanner = () => {
@@ -101,38 +83,9 @@ displayBanner = () => {
     )
   }
 }
-
-//rendering items saved in Local Storage
-hydrateStateWithLocalStorage = () =>{
-  //for all items in state
-  for(let key in this.state){
-    //if the key exists in local storage
-    if(localStorage.hasOwnProperty(key)){
-      let value = localStorage.getItem(key)
-
-      //parse the localStorage string and setState
-      try{
-        value = JSON.parse(value)
-        this.setState({[key]: value})
-      } catch (e){
-        //handle empty string
-        this.setState({[key]: value})
-      }
-    }
-  }
-}
-
-saveStateToLocalStorage = () =>{
-  //for every item in state
-  for (let key in this.state){
-    //save to local storage
-    localStorage.setItem(key, JSON.stringify(this.state[key]))
-  }
-}
  
 render(){
 const {movies, nominations,  disabledButtons} = this.state
-  console.log(this.state.nominations)
   return (
     <div className="App">
       <SearchBar onChange={this.handleSearch} onSubmit={this.handleSubmit} findMovies={this.findMovies} />
