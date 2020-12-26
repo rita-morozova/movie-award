@@ -28,9 +28,9 @@ componentDidMount = () => {
 
 
 
-findMovies = async(word) => {
+findMovies = async(input) => {
   const key = process.env.REACT_APP_OMDB_API_KEY
-  const response = await axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${word}`)
+  const response = await axios.get(`http://www.omdbapi.com/?apikey=${key}&s=${input}`)
   const {data} = response
   const {Search} = data
   
@@ -85,11 +85,12 @@ displayBanner = () => {
 }
  
 render(){
-const {movies, nominations,  disabledButtons} = this.state
+const {movies, nominations,  disabledButtons, error, searchWord} = this.state
   return (
     <div className="App">
+      {error ? <h2>error</h2> : null}
       <SearchBar onChange={this.handleSearch} onSubmit={this.handleSubmit} findMovies={this.findMovies} />
-      <ResultsContainer  movies={movies}  addToNomination={this.addToNomination}  disabledButtons={disabledButtons} />
+      <ResultsContainer  movies={movies}  addToNomination={this.addToNomination}  disabledButtons={disabledButtons} searchWord={searchWord} />
       <NominationsContainer nominations={nominations} removeFromNomination={this.removeFromNomination}/>
       {this.displayBanner()}
     </div>
