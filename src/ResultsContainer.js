@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import MovieCard from './MovieCard'
 import LoadingComponent from './LoadingComponent'
 
@@ -6,7 +6,7 @@ const ResultsContainer = ({movies, addToNomination,  disabledButtons, searchWord
 
 
     return(
-      <div>
+      <div className='results'>
         {searchWord.length > 0 ?
         <>
         <h2>Results for {!searchWord ? '...'  : `'${searchWord}'`}</h2>

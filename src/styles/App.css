@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+}
+
+/* include padding and border in total width and height */
+* {
+  box-sizing: border-box;
+}
+
+.header{
+  background-color: #7f8be6;
+  color: #ffffff;
+  padding: 15px;
+}
+
+.nominations{
+  background-color: rgba(230, 175, 127, 0.2);
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  width: 25%;
+  float: left;
+}
+
+.results{
+  background-color: rgba(230, 175, 127, 0.7);
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  width: 75%;
+  float: left;
+}
+
+.row::after {
+  content: '';
+  clear: both;
+  display: table;
+}
+

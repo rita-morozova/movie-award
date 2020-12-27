@@ -3,8 +3,8 @@ import React from 'react'
 const Header = () => {
 
   return(
-    <div>
-      <h2>The Shoppies: Movie awards for entrepreneurs</h2>
+    <div className='header'>
+      <h1>The Shoppies: Movie awards for entrepreneurs</h1>
     </div>
   )
 }

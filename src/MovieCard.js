@@ -8,7 +8,7 @@ const MovieCard = ({movie, addToNomination,  index, disabledButtons}) =>{
 
     return(
       <div >
-        <img onError={addDefaultSrc} src={movie.Poster} alt='poster' />
+        <img onError={addDefaultSrc} src={movie.Poster} alt='poster' width='100px' height='150px' />
         <h2>{movie.Title}</h2>
         <h3>{movie.Year}</h3>
         <button onClick={() => addToNomination(index, movie)} disabled={disabledButtons[index]}>Nominate</button>

@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css'
+import './styles/App.css'
 import SearchBar from './SearchBar'
 import ResultsContainer from './ResultsContainer'
 import NominationsContainer from './NominationsContainer'
@@ -17,8 +17,7 @@ state = {
   searchWord: '',
   error: null,
   nominations: [],
-  disabledButtons: [],
-  
+  disabledButtons: [], 
 }
 
 componentDidMount = () => {
@@ -27,8 +26,6 @@ componentDidMount = () => {
     this.setState({nominations: JSON.parse(nominations)})
   }
 }
-
-
 
 findMovies = async(input) => {
   const key = process.env.REACT_APP_OMDB_API_KEY
@@ -102,8 +99,10 @@ const body = 'Check out The Shoppies Awards and vote now for your top-five movie
       {this.handleError()}
       <Header />
       <SearchBar onChange={this.handleSearch} onSubmit={this.handleSubmit} findMovies={this.findMovies} />
+      <div className='row'>
       <ResultsContainer  movies={movies}  addToNomination={this.addToNomination}  disabledButtons={disabledButtons} searchWord={searchWord} />
       <NominationsContainer nominations={nominations} removeFromNomination={this.removeFromNomination}/>
+      </div>
       {this.displayBanner()}
       <EmailShareButton  url ={url} subject={subject} body={body}>
         <EmailIcon size={32} round={true} />
@@ -122,4 +121,4 @@ const body = 'Check out The Shoppies Awards and vote now for your top-five movie
  }
 }
 
-export default App;
+export default App
