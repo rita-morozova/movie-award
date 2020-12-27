@@ -4,6 +4,7 @@ import SearchBar from './SearchBar'
 import ResultsContainer from './ResultsContainer'
 import NominationsContainer from './NominationsContainer'
 import Banner from './Banner'
+import Header from './Header'
 import axios from 'axios'
 import {EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton, TwitterIcon, TwitterShareButton} from 'react-share'
 
@@ -97,8 +98,9 @@ const url = 'http://localhost:3000/'
 const subject = 'The Shoppies: Movie awards for entrepreneurs'
 const body = 'Check out The Shoppies Awards and vote now for your top-five movies of 2020!'
   return (
-    <div className="App">
+    <div className='App'>
       {this.handleError()}
+      <Header />
       <SearchBar onChange={this.handleSearch} onSubmit={this.handleSubmit} findMovies={this.findMovies} />
       <ResultsContainer  movies={movies}  addToNomination={this.addToNomination}  disabledButtons={disabledButtons} searchWord={searchWord} />
       <NominationsContainer nominations={nominations} removeFromNomination={this.removeFromNomination}/>
