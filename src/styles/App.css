@@ -99,6 +99,28 @@ text-align: center;
   object-position: center;
 }
 
+.search{
+  width: 80%;
+  height: 4rem;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 2px 23px 2px 30px;
+  outline: 0;
+  background-color: #f5f5f5;
+  color: grey;
+  font-size: 16pt;
+ 
+ 
+}
+
+.search-bar{
+  padding: 15px;
+  display: flex;
+  min-width: 100px;
+  padding: 1.5rem;
+}
+
+
 
 
 
@@ -111,7 +133,8 @@ text-align: center;
   /* For tablets: */
  /* .col-8 {width: 75%;}
  .col-4 {width: 25%;}
- .poster img {max-width: 100%; height: auto} */
+ .poster img {max-width: 100%; height: auto} 
+ .search {width: 100%; height: auto;} */
 }
 
 @media only screen and (max-width: 768px) {
@@ -120,4 +143,5 @@ text-align: center;
     width: 100%;
   }
   .poster img {max-width: 100%; height: auto}
+  .search {width: 100%; height: auto;}
 }

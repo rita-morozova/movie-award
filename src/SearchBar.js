@@ -1,10 +1,11 @@
 import React from 'react'
+import {Icon} from 'semantic-ui-react'
 
-const SearchBar = ({onChange, onSubmit}) => {
+const SearchBar = ({onChange}) => {
   return (
-      <form onSubmit={onSubmit}>
-        <input type='text' placeholder='Search...' onChange={onChange} />
-      </form>
+    <div className='search-bar'>
+        <input type='text' placeholder='Search for a movie...' onChange={onChange} className='search'/>
+      </div>
   )
 }
 
