@@ -2,6 +2,7 @@ import React from 'react'
 import MovieCard from './MovieCard'
 import LoadingComponent from './LoadingComponent'
 
+
 const ResultsContainer = ({movies, addToNomination,  disabledButtons, searchWord}) =>{
 
 
