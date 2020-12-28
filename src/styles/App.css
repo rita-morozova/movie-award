@@ -57,9 +57,24 @@
   border-radius: 5px;
   border: none;
   height: 3rem;
+  width: 7rem;
   align-self: center;
   box-shadow: 3px 3px 3px;
   /* background-color: yellow; */
+}
+
+.nominated-movie{
+  padding: 3rem;
+}
+
+.nominated-movie button{
+  display: block;
+  border-radius: 5px;
+  border: none;
+  height: 3rem;
+  width: 7rem;
+  box-shadow: 3px 3px 3px;
+  margin-left: 30%
 }
 
 .movie-card h2, h3{
