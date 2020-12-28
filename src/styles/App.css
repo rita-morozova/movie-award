@@ -35,14 +35,14 @@
   background-color: rgba(230, 175, 127, 0.7);
   padding: 15px;
   font-size: 14px;
-  width: 72%;
+  width: 70%;
   height: 70vh;
   float: left;
   display: flex;
   flex-direction: column;
   overflow: scroll;
   border-radius: 5px;
-  margin: 1rem 0 1rem 1.5rem;
+  margin: 1rem 1rem 1rem 1.5rem;
   
 }
 
@@ -51,6 +51,25 @@
   justify-content: space-between;
   padding: 1rem;
 }
+
+.movie-card button{
+  display: block;
+  border-radius: 5px;
+  border: none;
+  height: 3rem;
+  align-self: center;
+  box-shadow: 3px 3px 3px;
+  /* background-color: yellow; */
+}
+
+.movie-card h2, h3{
+  align-self: center;
+}
+
+.results h2, h1{
+text-align: center;
+}
+
 
 .row::after {
   content: '';

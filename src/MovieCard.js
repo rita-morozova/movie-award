@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import {  Icon, Image } from 'semantic-ui-react'
 
 
 const MovieCard = ({movie, addToNomination,  index, disabledButtons}) =>{
@@ -10,11 +10,10 @@ const MovieCard = ({movie, addToNomination,  index, disabledButtons}) =>{
 
     return(
       <div className='poster movie-card'>
-        <img onError={addDefaultSrc} src={movie.Poster} alt='poster' wrapped ui={false} />
-           
+        <img onError={addDefaultSrc} src={movie.Poster} alt='poster'/>
         <h2>{movie.Title}</h2>
-        <h3>{movie.Year}</h3>
-        <button onClick={() => addToNomination(index, movie)} disabled={disabledButtons[index]}>Nominate</button>
+        <h2>{movie.Year}</h2>
+        <button onClick={() => addToNomination(index, movie)} disabled={disabledButtons[index]}>NOMINATE</button>
      </div> 
     )
 }

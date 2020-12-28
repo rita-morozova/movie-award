@@ -20,7 +20,7 @@ const ResultsContainer = ({movies, addToNomination,  disabledButtons, searchWord
         {movies.map ((movie, index) =>  <MovieCard key={movie.imdbID} index={index} movie={movie} addToNomination={addToNomination}  disabledButtons={disabledButtons} />)}
         </>
         :
-        <h2>Search for your favorite movie</h2>
+        <h1>Search for your favorite movie</h1>
         }
       </div>
     )

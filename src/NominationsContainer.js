@@ -6,8 +6,8 @@ const  NominationsContainer = ({nominations, removeFromNomination}) =>{
 
     return(
       <div className='nominations col-4'>
-        <h2>Nominations</h2>
-        {nominations.length === 0 ? 'Nominate your first movie' : null}
+        <h1>Nominations</h1>
+        {nominations.length === 0 ? <h3>Nominate your first movie</h3> : null}
         {nominations.map (movie => <NominatedMovie key={movie.imdbID} movie={movie} removeFromNomination={removeFromNomination} />)}
       </div>
     )
