@@ -3,7 +3,6 @@
 /* include padding and border in total width and height */
 * {
   box-sizing: border-box;
-  /* background-color: #1F2833; */
 }
 
 [className*='col-'] {
@@ -130,12 +129,16 @@ text-align: center;
 
 .banner{
   text-align: center;
-  background-color: aqua;
   height: 10vh;
   width: 50%;
   margin-left: 25%;
   padding: 10px;
+  font-family: Futura,Helvetica,Arial,sans-serif;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 24px;
 }
+
 
 
 
