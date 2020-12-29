@@ -99,6 +99,7 @@ const body = 'Check out The Shoppies Awards and vote now for your top-five movie
       {this.handleError()}
 
       <Header /> 
+      <div className='background'>
 
      {!this.displayBanner() ? <SearchBar onChange={this.handleSearch} findMovies={this.findMovies} /> : this.displayBanner() }
 
@@ -122,6 +123,7 @@ const body = 'Check out The Shoppies Awards and vote now for your top-five movie
       <TwitterShareButton url={url} title={body} hashtags={['movieaward', 'shopify']}>
         <TwitterIcon size={32} round={true}/>
       </TwitterShareButton>
+      </div>
     </div>
   )
  }
