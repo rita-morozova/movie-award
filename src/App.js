@@ -100,14 +100,15 @@ const body = 'Check out The Shoppies Awards and vote now for your top-five movie
 
       <Header /> 
 
-      {!this.displayBanner() ? <SearchBar onChange={this.handleSearch} findMovies={this.findMovies} /> : this.displayBanner()}
+     {!this.displayBanner() ? <SearchBar onChange={this.handleSearch} findMovies={this.findMovies} /> : this.displayBanner() }
+
+    
 
       <div className='row'>
       <ResultsContainer  movies={movies}  addToNomination={this.addToNomination}  disabledButtons={disabledButtons} searchWord={searchWord} />
       <NominationsContainer nominations={nominations} removeFromNomination={this.removeFromNomination}/>
       </div>
 
-      {/* {this.displayBanner()} */}
 
       <EmailShareButton  url ={url} subject={subject} body={body}>
         <EmailIcon size={32} round={true} />

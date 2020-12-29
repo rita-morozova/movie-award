@@ -1,6 +1,4 @@
-/* .App {
-  text-align: center;
-} */
+
 
 /* include padding and border in total width and height */
 * {
@@ -120,7 +118,14 @@ text-align: center;
   padding: 1.5rem;
 }
 
-
+.banner{
+  text-align: center;
+  background-color: aqua;
+  height: 10vh;
+  width: 50%;
+  margin-left: 25%;
+  padding: 10px;
+}
 
 
 
