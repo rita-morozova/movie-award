@@ -22,7 +22,7 @@ state = {
 
 componentDidMount = () => {
   let nominations = localStorage.getItem('nominations')
-  if(nominations.length !== 0 || nominations !== null){
+  if(nominations.length !== 0){
     this.setState({nominations: JSON.parse(nominations)})
   }
 }
