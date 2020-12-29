@@ -74,11 +74,27 @@ addToNomination= (index, movie) =>{
  }
 }
 
-removeFromNomination = (movie) =>{
-  const updatedList = this.state.nominations.filter(nominatedMovie =>nominatedMovie !== movie ) 
-  this.setState({nominations: updatedList})
+removeFromNomination = (movie, index) =>{
+  // const updatedList = this.state.nominations.filter(nominatedMovie =>nominatedMovie !== movie)
+  // const newDisabledButtons = this.state.disabledButtons
+  // newDisabledButtons[index]=false 
+  // this.setState({nominations: updatedList, disabledButtons: newDisabledButtons})
+  this.setState((prevState) => {
+    const updatedList = [...prevState.nominations].filter(nm => nm !== movie);
+    const newDisabledButtons = [...prevState.disabledButtons];
+    newDisabledButtons[index] = false;
+    //Update Local Storage after removing a movie from nominations
+    localStorage.setItem('nominations', JSON.stringify(updatedList))
+    return{
+      nominations: updatedList,
+      disabledButtons: newDisabledButtons
+    }
+  }
+
+  )
+
   //Update Local Storage after removing a movie from nominations
-  localStorage.setItem('nominations', JSON.stringify(updatedList))
+  // localStorage.setItem('nominations', JSON.stringify(updatedList))
 }
 
 displayBanner = () => {
@@ -106,11 +122,11 @@ const body = 'Check out The Shoppies Awards and vote now for your top-five movie
     
 
       <div className='row'>
-      <ResultsContainer  movies={movies}  addToNomination={this.addToNomination}  disabledButtons={disabledButtons} searchWord={searchWord} />
-      <NominationsContainer nominations={nominations} removeFromNomination={this.removeFromNomination}/>
+      <ResultsContainer  movies={movies}  addToNomination={this.addToNomination}  disabledButtons={disabledButtons} searchWord={searchWord} nominations={nominations} />
+      <NominationsContainer nominations={nominations} removeFromNomination={this.removeFromNomination} disabledButtons={disabledButtons}/>
       </div>
 
-
+      <div className='icons'>
       <EmailShareButton  url ={url} subject={subject} body={body}>
         <EmailIcon size={32} round={true} />
       </EmailShareButton>
@@ -123,6 +139,8 @@ const body = 'Check out The Shoppies Awards and vote now for your top-five movie
       <TwitterShareButton url={url} title={body} hashtags={['movieaward', 'shopify']}>
         <TwitterIcon size={32} round={true}/>
       </TwitterShareButton>
+      </div>
+
       </div>
     </div>
   )

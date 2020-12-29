@@ -81,8 +81,13 @@
   height: 3rem;
   width: 7rem;
   align-self: center;
-  box-shadow: 3px 3px 3px;
-  /* background-color: yellow; */
+  box-shadow: 3px 3px 3px #2a2a2a;
+  background-color: #cb2d6f;
+  color: white;
+}
+
+button:disabled{
+background-color: rgba(80, 18, 44, 0.5);
 }
 
 .nominated-movie{
@@ -95,16 +100,15 @@
   border: none;
   height: 3rem;
   width: 7rem;
-  box-shadow: 3px 3px 3px;
+  box-shadow: 3px 3px 3px #2a2a2a;
   margin-left: 30%;
-  /* background-color: #6F2232; */
+  background-color: #cb2d6f;
+  color: white;
 }
 
 .movie-card h2, h3{
   align-self: center;
 }
-
-
 
 
 .row::after {
@@ -149,7 +153,7 @@
   text-transform: uppercase;
   font-weight: 300;
   font-size: 24px;
-  color: #2a2a2a;
+  color: white;
 }
 
 

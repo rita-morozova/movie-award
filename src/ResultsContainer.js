@@ -3,7 +3,7 @@ import MovieCard from './MovieCard'
 import LoadingComponent from './LoadingComponent'
 
 
-const ResultsContainer = ({movies, addToNomination,  disabledButtons, searchWord}) =>{
+const ResultsContainer = ({movies, addToNomination,  disabledButtons, searchWord, nominations}) =>{
 
 
     return(
@@ -17,11 +17,11 @@ const ResultsContainer = ({movies, addToNomination,  disabledButtons, searchWord
         <LoadingComponent /> 
         </>
         : null}
-        {movies.map ((movie, index) =>  <MovieCard key={movie.imdbID} index={index} movie={movie} addToNomination={addToNomination}  disabledButtons={disabledButtons} />)}
+        {movies.map ((movie, index) =>  <MovieCard key={movie.imdbID} index={index} movie={movie} addToNomination={addToNomination}  disabledButtons={disabledButtons} nominations={nominations}/>)}
         </>
         :
         <div className='empty'>
-        <h1 style={{marginTop: '15%'}}>Search for your favorite movies and nominate them for The Shoppies Movie Award</h1>
+        <h1 style={{marginTop: '15%'}}>Search for your five favorite movies and nominate them for The Shoppies Movie Awards</h1>
         </div>
         }
       </div>

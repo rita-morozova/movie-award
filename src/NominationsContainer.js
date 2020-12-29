@@ -2,7 +2,7 @@ import React from 'react'
 import NominatedMovie from './NominatedMovie'
 
 
-const  NominationsContainer = ({nominations, removeFromNomination}) =>{
+const  NominationsContainer = ({nominations, removeFromNomination, disabledButtons}) =>{
 
     return(
       <div className='nominations col-4'>
@@ -14,7 +14,7 @@ const  NominationsContainer = ({nominations, removeFromNomination}) =>{
         </>
          : null
          }
-        {nominations.map (movie => <NominatedMovie key={movie.imdbID} movie={movie} removeFromNomination={removeFromNomination} />)}
+        {nominations.map ((movie, index) => <NominatedMovie key={movie.imdbID} index={index} movie={movie} removeFromNomination={removeFromNomination} disabledButtons={disabledButtons} />)}
       </div>
     )
 }
