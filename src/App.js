@@ -39,7 +39,7 @@ findMovies = async(input) => {
       disabledButtons: new Array(Search.length).fill(false)
     })
   }else if(data.Error === 'Movie Not Found'){
-    this.setState({error: 'Your search did not return any matches. Please try again'})
+    this.setState({error: 'Movie not Found. Please try again'})
   }else if (data.Error === 'Too many results'){
     this.setState({error: 'Too many results. Please enter a more specific title.'})
   }
@@ -75,10 +75,6 @@ addToNomination= (index, movie) =>{
 }
 
 removeFromNomination = (movie, index) =>{
-  // const updatedList = this.state.nominations.filter(nominatedMovie =>nominatedMovie !== movie)
-  // const newDisabledButtons = this.state.disabledButtons
-  // newDisabledButtons[index]=false 
-  // this.setState({nominations: updatedList, disabledButtons: newDisabledButtons})
   this.setState((prevState) => {
     const updatedList = [...prevState.nominations].filter(nm => nm !== movie);
     const newDisabledButtons = [...prevState.disabledButtons];
@@ -89,12 +85,7 @@ removeFromNomination = (movie, index) =>{
       nominations: updatedList,
       disabledButtons: newDisabledButtons
     }
-  }
-
-  )
-
-  //Update Local Storage after removing a movie from nominations
-  // localStorage.setItem('nominations', JSON.stringify(updatedList))
+  })
 }
 
 displayBanner = () => {

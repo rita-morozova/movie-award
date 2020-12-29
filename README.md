@@ -11,6 +11,7 @@ Clone this repo and cd into the movie-award
 
 ## Technologies used:
 * React.js
+* Local Storage
 * OMDb API
 * Axios
 
