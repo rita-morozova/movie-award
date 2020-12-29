@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Icon, Image } from 'semantic-ui-react'
+
 
 
 const MovieCard = ({movie, addToNomination,  index, disabledButtons, nominations}) =>{

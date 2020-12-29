@@ -1,5 +1,5 @@
 import React from 'react'
-import {Icon} from 'semantic-ui-react'
+
 
 const SearchBar = ({onChange}) => {
   return (
