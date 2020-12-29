@@ -5,7 +5,7 @@ import NominatedMovie from './NominatedMovie'
 const  NominationsContainer = ({nominations, removeFromNomination, disabledButtons}) =>{
 
     return(
-      <div className='nominations col-4'>
+      <div className='nominations col-s-4'>
         <h1>NOMINATIONS</h1>
         {nominations.length === 0 ? 
         <>

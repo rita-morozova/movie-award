@@ -7,7 +7,7 @@ const ResultsContainer = ({movies, addToNomination,  disabledButtons, searchWord
 
 
     return(
-      <div className='results col-8'>
+      <div className='results col-s-8'>
         {searchWord.length > 0 ?
         <>
         <h2>Results for {!searchWord ? '...'  : `'${searchWord}'`}</h2>
