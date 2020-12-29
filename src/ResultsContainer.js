@@ -13,14 +13,16 @@ const ResultsContainer = ({movies, addToNomination,  disabledButtons, searchWord
         <h2>Results for {!searchWord ? '...'  : `'${searchWord}'`}</h2>
         {movies.length ===0 ? 
         <>
-        <h2>Too many results. Please enter a more specific title.</h2>
+        <h2 style={{marginTop: '15%'}}>Too many results. Please enter a more specific title</h2>
         <LoadingComponent /> 
         </>
         : null}
         {movies.map ((movie, index) =>  <MovieCard key={movie.imdbID} index={index} movie={movie} addToNomination={addToNomination}  disabledButtons={disabledButtons} />)}
         </>
         :
-        <h1>Search for your favorite movie</h1>
+        <div className='empty'>
+        <h1 style={{marginTop: '15%'}}>Search for your favorite movies and nominate them for The Shoppies Movie Award</h1>
+        </div>
         }
       </div>
     )

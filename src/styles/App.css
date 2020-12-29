@@ -45,6 +45,8 @@
   margin: 1rem 0 1rem 0.5rem;
 }
 
+
+
 .results{
   background-color: rgba(255, 255, 255, 0.8);
   color: #2a2a2a;
@@ -60,6 +62,11 @@
   margin: 1rem 1rem 1rem 1.5rem;
 }
 
+.results h2, h1{
+  text-align: center;
+  }
+
+  
 
 .movie-card{
   display: flex;
@@ -97,9 +104,7 @@
   align-self: center;
 }
 
-.results h2, h1{
-text-align: center;
-}
+
 
 
 .row::after {
@@ -125,8 +130,7 @@ text-align: center;
   background-color: #f5f5f5;
   color: grey;
   font-size: 16pt;
- 
- 
+  margin-left: 10%;
 }
 
 .search-bar{
