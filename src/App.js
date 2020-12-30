@@ -98,7 +98,7 @@ displayBanner = () => {
  
 render(){
 const {movies, nominations,  disabledButtons, searchWord} = this.state
-const url = 'http://localhost:3000/'
+const url = 'https://localhost:3000/'
 const subject = 'The Shoppies: Movie awards for entrepreneurs'
 const body = 'Check out The Shoppies Awards and vote now for your top-five movies of 2020!'
   return (
