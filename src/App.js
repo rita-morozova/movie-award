@@ -29,7 +29,7 @@ componentDidMount = () => {
 
 findMovies = async(input) => {
   const key = process.env.REACT_APP_OMDB_API_KEY
-  const response = await axios.get(`https://www.omdbapi.com/?apikey=${key}&s=${input}`)
+  const response = await axios.get(`https://www.omdbapi.com/?s=${input}&type=movie&apikey=${key}`)
   const {data} = response
   const {Search} = data
   
