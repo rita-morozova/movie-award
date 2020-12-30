@@ -1,6 +1,6 @@
 {
-  "name": "shoppies",
-  "homepage": "https://rita-morozova.github.io/movie-award/"
+  "name": "movie-award",
+  "homepage": "https://rita-morozova.github.io/movie-award/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
