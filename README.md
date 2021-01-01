@@ -3,6 +3,8 @@
 ## Description
 An app that helps managing movie nominations for the upcoming Shoppies.
 
+[Demo](https://shoppies-award.netlify.app/)
+
 ## Getting Started
 Clone this repo and cd into the movie-award
 
