@@ -9,7 +9,7 @@ An app that helps managing movie nominations for the upcoming Shoppies.
 Clone this repo and cd into the movie-award
 
 - Run `npm install` to install all dependencies
-- Run `npm start` 
+- Run `npm start` to start a server
 
 ## Technologies used:
 * React.js
