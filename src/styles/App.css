@@ -3,17 +3,18 @@
   box-sizing: border-box;
 }
 
-.background{
+.background {
   background-color: #1a1a1d;
 }
 
-.header{
+.header {
   background-color: #cb2d6f;
   color: #f5f5f5;
   padding: 15px;
   font-style: italic;
   text-align: right;
-  font-family: garamond-premier-pro-display, Georgia,'Times New Roman',Times,serif;
+  font-family: garamond-premier-pro-display, Georgia, "Times New Roman", Times,
+    serif;
   font-size: 14pt;
 }
 
@@ -21,7 +22,7 @@
   float: left;
 }
 
-.nominations{
+.nominations {
   background-color: rgba(255, 255, 255, 0.8);
   color: #2a2a2a;
   padding: 15px;
@@ -35,7 +36,7 @@
   margin: 1rem 0 1rem 0.5rem;
 }
 
-.results{
+.results {
   background-color: rgba(255, 255, 255, 0.8);
   color: #2a2a2a;
   padding: 15px;
@@ -50,17 +51,18 @@
   margin: 1rem 1rem 1rem 1.5rem;
 }
 
-.results h2, h1{
+.results h2,
+h1 {
   text-align: center;
-  }
+}
 
-.movie-card{
+.movie-card {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
 }
 
-.movie-card button{
+.movie-card button {
   display: block;
   border-radius: 5px;
   border: none;
@@ -72,15 +74,15 @@
   color: white;
 }
 
-button:disabled{
-background-color: rgba(80, 18, 44, 0.5);
+button:disabled {
+  background-color: rgba(80, 18, 44, 0.5);
 }
 
-.nominated-movie{
+.nominated-movie {
   padding: 3rem;
 }
 
-.nominated-movie button{
+.nominated-movie button {
   display: block;
   border-radius: 5px;
   border: none;
@@ -92,24 +94,25 @@ background-color: rgba(80, 18, 44, 0.5);
   color: white;
 }
 
-.movie-card h2, h3{
+.movie-card h2,
+h3 {
   align-self: center;
 }
 
 .row::after {
-  content: '';
+  content: "";
   clear: both;
   display: table;
 }
 
-.poster img{
-  width: 100px; 
-  height: 150px; 
+.poster img {
+  width: 100px;
+  height: 150px;
   object-fit: cover;
   object-position: center;
 }
 
-.search{
+.search {
   width: 80%;
   height: 3rem;
   border: 1px solid grey;
@@ -122,48 +125,64 @@ background-color: rgba(80, 18, 44, 0.5);
   margin-left: 10%;
 }
 
-.search-bar{
+.search-bar {
   padding: 10px;
   display: flex;
   min-width: 100px;
 }
 
-.banner{
+.banner {
   text-align: center;
   height: 10vh;
   width: 50%;
   margin-left: 25%;
   padding: 15px;
-  font-family: Futura,Helvetica,Arial,sans-serif;
+  font-family: Futura, Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 300;
   font-size: 24px;
   color: white;
 }
 
-.spin{
+.spin {
   align-self: center;
   margin-top: 15px;
 }
 
-[className*='col-'] {
+[className*="col-"] {
   float: left;
   padding: 15px;
 }
 
 @media only screen and (min-width: 600px) {
   /* For tablets: */
- .col-s-8 {width: 70%;}
- .col-s-4 {width: 25%;}
- .poster img {max-width: 100%; height: auto} 
- .search {width: 100%; height: auto;}
+  .col-s-8 {
+    width: 70%;
+  }
+  .col-s-4 {
+    width: 25%;
+  }
+  .poster img {
+    max-width: 100%;
+    height: auto;
+  }
+  .search {
+    width: 100%;
+    height: auto;
+  }
 }
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-  [className*='col-'] {
+  [className*="col-"] {
     width: 100%;
   }
-  .poster img {max-width: 100%; height: auto}
-  .search {width: 100%; height: auto;}
+  .poster img {
+    max-width: 100%;
+    height: auto;
+  }
+  .search {
+    width: 100%;
+    height: auto;
+  }
 }
