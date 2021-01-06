@@ -4,7 +4,7 @@
 
 An app that helps managing movie nominations for the upcoming Shoppies.
 
-[Demo](https://shoppies-award.netlify.app/)
+[See Demo Here](https://shoppies-award.netlify.app/)
 
 ## Getting Started
 
@@ -19,5 +19,11 @@ Clone this repo and cd into the movie-award
 - Local Storage
 - OMDb API
 - Axios
+
+![Search for your favorite movies](public/1.png)
+
+![Nominate five favorite movies] (public/2.png)
+
+![Share with friends] (public/3.png)
 
 #### Created By _**Margarita Morozova**_

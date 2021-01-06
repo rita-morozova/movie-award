@@ -14,7 +14,9 @@ const NominationsContainer = ({
           <img src="/nominate.jpg" alt="poster" height={265} />
           <h3>Nominate your first movie...</h3>
         </>
-      ) : null}
+      ) 
+      :
+      <>
       {nominations.map((movie) => (
         <NominatedMovie
           key={movie.imdbID}
@@ -23,6 +25,8 @@ const NominationsContainer = ({
           disabled={nominated.has(movie.imdbID)}
         />
       ))}
+      </>
+      }
     </div>
   );
 };
