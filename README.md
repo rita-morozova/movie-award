@@ -21,12 +21,12 @@ Clone this repo and cd into the movie-award
 - Axios
 
 ### Search for your favorite movies
-![Search](public/1.png)
+![Search](https://res.cloudinary.com/diexi8g0j/image/upload/v1609966163/1_vsggux.png)
 
 ### Nominate five favorite movies
-![Nominate](public/2.png)
+![Nominate](https://res.cloudinary.com/diexi8g0j/image/upload/v1609966155/2_br07i0.png)
 
 ### Share with friends
-![Share](public/3.png)
+![Share](https://res.cloudinary.com/diexi8g0j/image/upload/v1609966151/3_pi6wjf.png)
 
 #### Created By _**Margarita Morozova**_
