@@ -4,7 +4,7 @@ import NominatedMovie from "./NominatedMovie";
 const NominationsContainer = ({
   nominations,
   removeFromNomination,
-  disabledButtons,
+  nominated,
 }) => {
   return (
     <div className="nominations col-s-4">
@@ -15,13 +15,12 @@ const NominationsContainer = ({
           <h3>Nominate your first movie...</h3>
         </>
       ) : null}
-      {nominations.map((movie, index) => (
+      {nominations.map((movie) => (
         <NominatedMovie
           key={movie.imdbID}
-          index={index}
           movie={movie}
           removeFromNomination={removeFromNomination}
-          disabledButtons={disabledButtons}
+          disabled={nominated.has(movie.imdbID)}
         />
       ))}
     </div>

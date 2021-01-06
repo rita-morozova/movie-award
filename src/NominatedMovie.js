@@ -3,8 +3,7 @@ import React from "react";
 const NominatedMovie = ({
   movie,
   removeFromNomination,
-  disabledButtons,
-  index,
+  disabled,
 }) => {
   const addDefaultSrc = (e) => {
     e.target.src = "/poster.jpg";
@@ -16,8 +15,8 @@ const NominatedMovie = ({
       <h4>{movie.Year}</h4>
       <button
         key={movie.imdbID}
-        onClick={() => removeFromNomination(movie, index)}
-        enabled={disabledButtons[index]}
+        onClick={() => removeFromNomination(movie)}
+        enabled={disabled}
       >
         REMOVE
       </button>

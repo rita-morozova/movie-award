@@ -5,9 +5,9 @@ import LoadingComponent from "./LoadingComponent";
 const ResultsContainer = ({
   movies,
   addToNomination,
-  disabledButtons,
   searchWord,
   nominations,
+  nominated,
 }) => {
   return (
     <div className="results col-s-8">
@@ -22,14 +22,13 @@ const ResultsContainer = ({
               <LoadingComponent />
             </>
           ) : null}
-          {movies.map((movie, index) => (
+          {movies.map((movie) => (
             <MovieCard
               key={movie.imdbID}
-              index={index}
               movie={movie}
               addToNomination={addToNomination}
-              disabledButtons={disabledButtons}
               nominations={nominations}
+              disabled={nominated.has(movie.imdbID)}
             />
           ))}
         </>

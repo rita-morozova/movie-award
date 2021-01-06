@@ -23,7 +23,6 @@ class App extends React.Component {
     searchWord: "",
     error: null,
     nominations: [],
-    disabledButtons: [],
   };
 
   componentDidMount = () => {
@@ -44,7 +43,6 @@ class App extends React.Component {
     if (data.Response === "True") {
       this.setState({
         movies: Search,
-        disabledButtons: new Array(Search.length).fill(false),
       });
     } else if (data.Error === "Movie Not Found") {
       this.setState({ error: "Movie not Found. Please try again" });
@@ -66,13 +64,11 @@ class App extends React.Component {
     }
   };
 
-  addToNomination = (index, movie) => {
+  addToNomination = (movie) => {
     const { nominations } = this.state;
     if (nominations.length < 5) {
       if (!nominations.includes(movie)) {
         this.setState((prevState) => {
-          const newDisabledButtons = [...prevState.disabledButtons];
-          newDisabledButtons[index] = true;
           //Update Local Storage after adding a new movie
           localStorage.setItem(
             "nominations",
@@ -80,25 +76,21 @@ class App extends React.Component {
           );
           return {
             nominations: [...prevState.nominations, movie],
-            disabledButtons: newDisabledButtons,
           };
         });
       }
     }
   };
 
-  removeFromNomination = (movie, index) => {
+  removeFromNomination = (movie) => {
     this.setState((prevState) => {
       const updatedList = [...prevState.nominations].filter(
         (nm) => nm !== movie
       );
-      const newDisabledButtons = [...prevState.disabledButtons];
-      newDisabledButtons[index] = false;
       //Update Local Storage after removing a movie from nominations
       localStorage.setItem("nominations", JSON.stringify(updatedList));
       return {
         nominations: updatedList,
-        disabledButtons: newDisabledButtons,
       };
     });
   };
@@ -110,7 +102,8 @@ class App extends React.Component {
   };
 
   render() {
-    const { movies, nominations, disabledButtons, searchWord } = this.state;
+    const { movies, nominations, searchWord } = this.state;
+    const nominated = new Set(nominations.map(nominatedMovie => nominatedMovie.imdbID))
     const url = "https://shoppies-award.netlify.app/";
     const subject = "The Shoppies: Movie awards for entrepreneurs";
     const body =
@@ -134,15 +127,15 @@ class App extends React.Component {
             <ResultsContainer
               movies={movies}
               addToNomination={this.addToNomination}
-              disabledButtons={disabledButtons}
               searchWord={searchWord}
               nominations={nominations}
+              nominated={nominated}
             />
             <NominationsContainer
               nominations={nominations}
               removeFromNomination={this.removeFromNomination}
-              disabledButtons={disabledButtons}
-            />
+              nominated={nominated}
+             />
           </div>
           <div className="icons">
             <EmailShareButton url={url} subject={subject} body={body}>

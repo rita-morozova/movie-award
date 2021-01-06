@@ -3,17 +3,10 @@ import React from "react";
 const MovieCard = ({
   movie,
   addToNomination,
-  index,
-  disabledButtons,
-  nominations,
+  disabled
 }) => {
   const addDefaultSrc = (e) => {
     e.target.src = "/poster.jpg";
-  };
-
-  //check if movie is nominated, if no - enable button
-  const findMovie = (movie) => {
-    nominations.find((m) => m === movie);
   };
 
   return (
@@ -22,9 +15,8 @@ const MovieCard = ({
       <h2>{movie.Title}</h2>
       <h2>{movie.Year}</h2>
       <button
-        onClick={() => addToNomination(index, movie)}
-        disabled={disabledButtons[index]}
-        enabled={!findMovie ? true : false}
+        onClick={() => addToNomination(movie)}
+        disabled={disabled}
       >
         NOMINATE
       </button>
