@@ -24,9 +24,9 @@ Clone this repo and cd into the movie-award
 ![Search](public/1.png)
 
 ### Nominate five favorite movies
-![Nominate] (public/2.png)
+![Nominate](public/2.png)
 
 ### Share with friends
-![Share] (public/3.png)
+![Share](public/3.png)
 
 #### Created By _**Margarita Morozova**_
