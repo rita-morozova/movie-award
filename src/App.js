@@ -25,7 +25,7 @@ class App extends React.Component {
     nominations: [],
   };
 
-  componentDidMount = () => {
+  componentDidMount(){
     let nominations = localStorage.getItem("nominations");
     if (nominations !== null) {
       this.setState({ nominations: JSON.parse(nominations) });
