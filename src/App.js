@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/App.css";
 import SearchBar from "./SearchBar";
 import ResultsContainer from "./ResultsContainer";
@@ -17,22 +17,25 @@ import {
   TwitterShareButton,
 } from "react-share";
 
-class App extends React.Component {
-  state = {
-    movies: [],
-    searchWord: "",
-    error: null,
-    nominations: [],
-  };
+const App = () => {
+  const [movies, setMovies] = useState([]);
+  const [searchWord, setSearchWord] = useState("");
+  const [error, setError] = useState(null);
+  const [nominations, setNominations] = useState([]);
 
-  componentDidMount(){
+  const getItemsFromLocalStorage = () => {
     let nominations = localStorage.getItem("nominations");
     if (nominations !== null) {
-      this.setState({ nominations: JSON.parse(nominations) });
+      setNominations(JSON.parse(nominations));
     }
   };
 
-  findMovies = async (input) => {
+  //add an empty array to prevent an infinite loop
+  useEffect(() => {
+    getItemsFromLocalStorage();
+  }, []);
+
+  const findMovies = async (input) => {
     const key = process.env.REACT_APP_OMDB_API_KEY;
     const response = await axios.get(
       `https://www.omdbapi.com/?apikey=${key}&s=${input}`
@@ -41,124 +44,104 @@ class App extends React.Component {
     const { Search } = data;
 
     if (data.Response === "True") {
-      this.setState({
-        movies: Search,
-      });
+      setMovies(Search);
     } else if (data.Error === "Movie Not Found") {
-      this.setState({ error: "Movie not Found. Please try again" });
+      setError("Movie not Found. Try again");
     } else if (data.Error === "Too many results") {
-      this.setState({
-        error: "Too many results. Please enter a more specific title.",
-      });
+      setError("Too many results. Enter a more specific title.");
     }
   };
 
-  handleSearch = (e) => {
-    this.setState({ searchWord: e.target.value });
-    this.findMovies(this.state.searchWord);
+  const handleSearch = (e) => {
+    setSearchWord(e.target.value);
+    findMovies(searchWord);
   };
 
-  handleError = () => {
-    if (this.state.error) {
-      alert(this.state.error);
+  const handleError = () => {
+    if (error) {
+      alert(error);
     }
   };
 
-  addToNomination = (movie) => {
-    const { nominations } = this.state;
+  const addToNomination = (movie) => {
     if (nominations.length < 5) {
       if (!nominations.includes(movie)) {
-        this.setState((prevState) => {
-          //Update Local Storage after adding a new movie
-          localStorage.setItem(
-            "nominations",
-            JSON.stringify([...prevState.nominations, movie])
-          );
-          return {
-            nominations: [...prevState.nominations, movie],
-          };
-        });
+        setNominations([...nominations, movie]);
+        //Update Local Storage after adding a new movie
+        localStorage.setItem(
+          "nominations",
+          JSON.stringify([...nominations, movie])
+        );
       }
     }
   };
 
-  removeFromNomination = (movie) => {
-    this.setState((prevState) => {
-      const updatedList = [...prevState.nominations].filter(
-        (nm) => nm !== movie
-      );
-      //Update Local Storage after removing a movie from nominations
-      localStorage.setItem("nominations", JSON.stringify(updatedList));
-      return {
-        nominations: updatedList,
-      };
-    });
+  const removeFromNomination = (movie) => {
+    const updatedList = [...nominations].filter((nominatedMovie) => nominatedMovie !== movie);
+    setNominations(updatedList);
+    //Update Local Storage after removing a movie from nominations
+    localStorage.setItem("nominations", JSON.stringify(updatedList));
   };
 
-  displayBanner = () => {
-    if (this.state.nominations.length === 5) {
+  const displayBanner = () => {
+    if (nominations.length === 5) {
       return <Banner />;
     }
   };
 
-  render() {
-    const { movies, nominations, searchWord } = this.state;
-    const nominated = new Set(nominations.map(nominatedMovie => nominatedMovie.imdbID))
-    const url = "https://shoppies-award.netlify.app/";
-    const subject = "The Shoppies: Movie awards for entrepreneurs";
-    const body =
-      "Check out The Shoppies Awards and vote now for your top-five movies of 2020!";
-    return (
-      <div className="App">
-        {this.handleError()}
+  const nominated = new Set(
+    nominations.map((nominatedMovie) => nominatedMovie.imdbID)
+  );
+  const url = "https://shoppies-award.netlify.app/";
+  const subject = "The Shoppies: Movie awards for entrepreneurs";
+  const body =
+    "Check out The Shoppies Awards and vote now for your top-five movies of 2020!";
 
-        <Header />
-        <div className="background">
-          {!this.displayBanner() ? (
-            <SearchBar
-              onChange={this.handleSearch}
-              findMovies={this.findMovies}
-            />
-          ) : (
-            this.displayBanner()
-          )}
-
-          <div className="row">
-            <ResultsContainer
-              movies={movies}
-              addToNomination={this.addToNomination}
-              searchWord={searchWord}
-              nominations={nominations}
-              nominated={nominated}
-            />
-            <NominationsContainer
-              nominations={nominations}
-              removeFromNomination={this.removeFromNomination}
-              nominated={nominated}
-             />
-          </div>
-          <div className="icons">
-            <EmailShareButton url={url} subject={subject} body={body}>
-              <EmailIcon size={32} round={true} />
-            </EmailShareButton>
-            <FacebookShareButton url={url} quote={body}>
-              <FacebookIcon size={32} round={true} />
-            </FacebookShareButton>
-            <LinkedinShareButton url={url} title={subject} summary={body}>
-              <LinkedinIcon size={32} round={true} />
-            </LinkedinShareButton>
-            <TwitterShareButton
-              url={url}
-              title={body}
-              hashtags={["movieaward", "shopify"]}
-            >
-              <TwitterIcon size={32} round={true} />
-            </TwitterShareButton>
-          </div>
+  return (
+    <div className="App">
+      {handleError()}
+      <Header />
+      <div className="background">
+        {!displayBanner() ? (
+          <SearchBar onChange={handleSearch} findMovies={findMovies} />
+        ) : (
+          displayBanner()
+        )}
+        <div className="row">
+          <ResultsContainer
+            movies={movies}
+            addToNomination={addToNomination}
+            searchWord={searchWord}
+            nominations={nominations}
+            nominated={nominated}
+          />
+          <NominationsContainer
+            nominations={nominations}
+            removeFromNomination={removeFromNomination}
+            nominated={nominated}
+          />
+        </div>
+        <div className="icons">
+          <EmailShareButton url={url} subject={subject} body={body}>
+            <EmailIcon size={32} round={true} />
+          </EmailShareButton>
+          <FacebookShareButton url={url} quote={body}>
+            <FacebookIcon size={32} round={true} />
+          </FacebookShareButton>
+          <LinkedinShareButton url={url} title={subject} summary={body}>
+            <LinkedinIcon size={32} round={true} />
+          </LinkedinShareButton>
+          <TwitterShareButton
+            url={url}
+            title={body}
+            hashtags={["movieaward", "shopify"]}
+          >
+            <TwitterIcon size={32} round={true} />
+          </TwitterShareButton>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;
