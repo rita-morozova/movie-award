@@ -154,24 +154,6 @@ h3 {
   padding: 15px;
 }
 
-@media only screen and (min-width: 600px) {
-  /* For tablets: */
-  .col-s-8 {
-    width: 70%;
-  }
-  .col-s-4 {
-    width: 25%;
-  }
-  .poster img {
-    max-width: 100%;
-    height: auto;
-  }
-  .search {
-    width: 100%;
-    height: auto;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   [className*="col-"] {
